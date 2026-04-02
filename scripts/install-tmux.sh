@@ -39,6 +39,7 @@ echo "Copied .tmux.conf"
 echo ""
 
 echo "Installing tmux plugins..."
+tmux start-server \; set-environment -g TMUX_PLUGIN_MANAGER_PATH "$HOME/.tmux/plugins/"
 "$HOME/.tmux/plugins/tpm/bin/install_plugins"
 
 echo ""

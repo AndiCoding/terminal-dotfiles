@@ -6,12 +6,12 @@ source "$SCRIPTS_DIR/utils.sh"
 
 GHOSTTY_CONFIG_DIR="$SCRIPTS_DIR/../ghostty"
 
-if command -v ghostty &>/dev/null; then
+if command -v ghostty &>/dev/null || [[ -d "/Applications/Ghostty.app" ]]; then
   echo "Ghostty already installed"
 else
   echo "Installing Ghostty..."
   if ensure_brew; then
-    brew install --cask ghostty
+    brew install -q --cask ghostty
   else
     echo "Ghostty does not support Linux via this installer. Download from https://ghostty.org/download"
     exit 1

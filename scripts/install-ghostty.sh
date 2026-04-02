@@ -31,4 +31,4 @@ else
 fi
 
 echo ""
-echo "Done! Restart Ghostty to apply the config."
+echo "Ghostty installed. Restart Ghostty to apply the config."

@@ -18,4 +18,4 @@ else
   sudo apt-get install -y ruby-full
 fi
 
-echo "Done!"
+echo "Ruby installed."

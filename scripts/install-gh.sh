@@ -22,4 +22,4 @@ else
   sudo apt-get install -y gh
 fi
 
-echo "Done!"
+echo "GitHub CLI (gh) installed."

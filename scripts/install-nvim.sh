@@ -31,4 +31,4 @@ else
 fi
 
 echo ""
-echo "Done! Run nvim to complete plugin installation."
+echo "Neovim installed with LazyVim config. Run nvim to complete plugin installation."

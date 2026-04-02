@@ -23,4 +23,4 @@ else
 fi
 
 echo ""
-echo "Done!"
+echo "lazygit installed."

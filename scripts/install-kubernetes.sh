@@ -51,4 +51,4 @@ else
 fi
 
 echo ""
-echo "Done!"
+echo "Kubernetes tools installed: kubectl, helm, rancher desktop (macOS) / k3s (Linux)."

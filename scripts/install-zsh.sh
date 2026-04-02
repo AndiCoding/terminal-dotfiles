@@ -89,4 +89,4 @@ else
 fi
 
 echo ""
-echo "Done! Open a new terminal or run: exec zsh"
+echo "zsh installed with Oh My Zsh, Powerlevel10k, and plugins. Open a new terminal or run: exec zsh"

@@ -41,4 +41,4 @@ tmux start-server \; set-environment -g TMUX_PLUGIN_MANAGER_PATH "$HOME/.tmux/pl
 "$HOME/.tmux/plugins/tpm/bin/install_plugins"
 
 echo ""
-echo "Done! Start tmux and press Prefix + r to reload config."
+echo "tmux installed with TPM and plugins. Start tmux and press Prefix + r to reload config."

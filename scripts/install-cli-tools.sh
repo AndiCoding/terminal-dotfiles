@@ -72,4 +72,4 @@ else
 fi
 
 echo ""
-echo "Done!"
+echo "CLI tools installed: fzf, zoxide, eza, bat, ripgrep"

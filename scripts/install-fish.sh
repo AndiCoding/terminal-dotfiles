@@ -70,4 +70,4 @@ else
 fi
 
 echo ""
-echo "Done! Open a new terminal. Tide will walk you through prompt setup on first launch."
+echo "fish installed with Fisher, Tide, and fzf.fish. Open a new terminal — Tide will walk you through prompt setup on first launch."

@@ -1,23 +1,24 @@
 # terminal-dotfiles
 
-Personal terminal configuration for zsh, fish, Neovim, and tmux.
+A batteries-included terminal setup for macOS and Linux. One script installs your shell, editor, multiplexer, and development tools — and leaves any existing configs untouched. All scripts are safe to re-run — already-installed tools and plugins are skipped, not updated.
 
 ```
 .
 ├── install.sh
 ├── scripts/
 │   ├── utils.sh
+│   ├── install-homebrew.sh
+│   ├── install-ruby.sh
 │   ├── install-cli-tools.sh
 │   ├── install-zsh.sh
 │   ├── install-fish.sh
 │   ├── install-nvim.sh
+│   ├── install-tmux.sh
 │   ├── install-docker.sh
 │   ├── install-kubernetes.sh
 │   ├── install-gh.sh
-│   ├── install-tmux.sh
 │   ├── install-lazygit.sh
-│   ├── install-ruby.sh
-│   └── install-homebrew.sh
+│   └── install-ghostty.sh
 ├── zsh/
 │   ├── .zshrc.mac
 │   └── .zshrc.linux
@@ -26,16 +27,33 @@ Personal terminal configuration for zsh, fish, Neovim, and tmux.
 │   └── config.fish.linux
 ├── tmux/
 │   └── .tmux.conf
-└── nvim/
+├── nvim/
+└── ghostty/
+    └── config
 ```
 
-All scripts support macOS (Homebrew) and Linux (apt). All scripts are safe to re-run — they skip anything already installed.
+---
+
+## Contents
+
+- [Install](#install)
+- [Shells](#shells)
+  - [Zsh](#zsh)
+  - [Fish](#fish)
+- [Tools](#tools)
+  - [CLI Tools](#cli-tools)
+  - [Neovim](#neovim)
+  - [tmux](#tmux)
+  - [Ghostty](#ghostty)
+  - [Docker](#docker)
+  - [Kubernetes](#kubernetes)
+  - [GitHub CLI](#github-cli)
+  - [lazygit](#lazygit)
+  - [Ruby](#ruby)
 
 ---
 
 ## Install
-
-### Everything at once
 
 ```bash
 bash install.sh
@@ -43,11 +61,15 @@ bash install.sh
 
 > Or make it executable first: `chmod +x install.sh && ./install.sh`
 
-The installer will prompt you to:
+The installer will ask you to:
 1. Choose a default shell — zsh or fish
-2. Select optional tools to install (0 for all)
+2. Select optional tools via an interactive checklist (all pre-selected)
+
+If a config file already exists on your system it will not be overwritten — the installer skips the copy and uses what you have.
 
 ### Individual scripts
+
+Each tool can also be installed standalone:
 
 ```bash
 bash scripts/install-homebrew.sh
@@ -56,60 +78,59 @@ bash scripts/install-cli-tools.sh
 bash scripts/install-zsh.sh
 bash scripts/install-fish.sh
 bash scripts/install-nvim.sh
+bash scripts/install-tmux.sh
 bash scripts/install-docker.sh
 bash scripts/install-kubernetes.sh
 bash scripts/install-gh.sh
-bash scripts/install-tmux.sh
 bash scripts/install-lazygit.sh
+bash scripts/install-ghostty.sh
 ```
 
 ---
 
-## CLI Tools
+## Shells
 
-Installed via `install-cli-tools.sh`. `bat` and `ripgrep` are paired with `fzf` — ripgrep is used as the file source and bat renders the preview pane.
+### Zsh
+
+Installs zsh with [Oh My Zsh](https://ohmyz.sh/), the [Powerlevel10k](https://github.com/romkatv/powerlevel10k) theme, and the following plugins:
+
+- `zsh-autosuggestions`
+- `zsh-syntax-highlighting`
+- `web-search`
+- `git`
+
+On first launch, Powerlevel10k will walk you through prompt configuration.
+
+### Fish
+
+Installs fish with [Fisher](https://github.com/jorgebucaran/fisher) as the plugin manager and:
+
+- [Tide](https://github.com/IlanCosman/tide) — prompt (equivalent to Powerlevel10k)
+- [fzf.fish](https://github.com/PatrickF1/fzf.fish) — fzf keybindings and completions
+
+Syntax highlighting and autosuggestions are built into fish — no plugins needed. On first launch, Tide will walk you through prompt configuration.
+
+---
+
+## Tools
+
+### CLI Tools
+
+Installed automatically as a dependency via `install-cli-tools.sh`.
 
 | Tool | Description |
 |------|-------------|
-| `fzf` | Fuzzy finder — `Ctrl+R`, `Ctrl+T`, `Alt+C` |
+| `fzf` | Fuzzy finder — `Ctrl+R` history, `Ctrl+T` files, `Alt+C` directories |
 | `zoxide` | Smarter `cd` with frecency-based jumping (`z`, `zi`) |
 | `eza` | Modern `ls` replacement with icons and git integration |
-| `bat` | Better `cat` with syntax highlighting |
-| `ripgrep` | Fast recursive search, used as fzf file source |
+| `bat` | `cat` with syntax highlighting and line numbers |
+| `ripgrep` | Fast recursive search, used as the fzf file source |
 
----
+### Neovim
 
-## Zsh
+Uses [LazyVim](https://lazyvim.github.io) as the base configuration. Open Neovim after install and LazyVim will automatically bootstrap all plugins.
 
-Installs and configures zsh with:
-
-- [Oh My Zsh](https://ohmyz.sh/)
-- [Powerlevel10k](https://github.com/romkatv/powerlevel10k) theme
-- Plugins: `zsh-autosuggestions`, `zsh-syntax-highlighting`, `web-search`, `git`
-
-The correct `.zshrc` for your OS is copied to `~/.zshrc`. On first launch, Powerlevel10k will walk you through prompt configuration.
-
----
-
-## Fish
-
-Installs and configures fish with:
-
-- [Fisher](https://github.com/jorgebucaran/fisher) — plugin manager
-- [Tide](https://github.com/IlanCosman/tide) — prompt (equivalent to Powerlevel10k)
-- [fzf.fish](https://github.com/PatrickF1/fzf.fish) — fzf integration
-
-Syntax highlighting and autosuggestions are built into fish — no plugins needed. The correct `config.fish` for your OS is copied to `~/.config/fish/config.fish`. On first launch, Tide will walk you through prompt configuration.
-
----
-
-## Neovim
-
-Uses [LazyVim](https://lazyvim.github.io) as the base configuration. Open Neovim after install and LazyVim will automatically install all plugins.
-
----
-
-## tmux
+### tmux
 
 Installs tmux with [TPM](https://github.com/tmux-plugins/tpm) and the following plugins:
 
@@ -119,35 +140,29 @@ Installs tmux with [TPM](https://github.com/tmux-plugins/tpm) and the following 
 | `tmux-resurrect` | Save and restore sessions across restarts |
 | `tmux-continuum` | Auto-saves sessions every 5 minutes |
 
-Key bindings: `Prefix` is `Ctrl+a`. Split with `Prefix + |` (horizontal) and `Prefix + -` (vertical). Navigate panes with `Prefix + h/j/k/l`. Reload config with `Prefix + r`.
+`Prefix` is `Ctrl+a`. Split panes with `Prefix + |` (vertical) and `Prefix + -` (horizontal). Navigate with `Prefix + h/j/k/l`. Reload config with `Prefix + r`.
 
----
+### Ghostty
 
-## Docker
+Installs [Ghostty](https://ghostty.org) via Homebrew Cask (macOS only) and copies a config with sensible defaults: JetBrains Mono Nerd Font, Catppuccin Mocha theme, and transparent window decorations.
+
+### Docker
 
 - macOS: installs Docker Desktop via Homebrew Cask
 - Linux: installs Docker Engine from the official Docker apt repository. Log out and back in after install for group permissions to take effect.
 
----
+### Kubernetes
 
-## Kubernetes
+Installs `kubectl`, `helm`, and a local cluster runtime — `k3s` on Linux, `k3d` on macOS (k3s is not supported natively on macOS; k3d runs it inside Docker).
 
-Installs `kubectl`, `helm`, and `k3s` (Linux) or `k3d` (macOS). k3s is not supported on macOS — k3d runs k3s inside Docker instead.
+### GitHub CLI
 
----
+Installs [`gh`](https://cli.github.com) for managing pull requests, issues, and releases from the terminal.
 
-## GitHub CLI
+### lazygit
 
-Installs `gh` for interacting with GitHub from the terminal.
+A terminal UI for git with a visual diff viewer, staging, branching, and rebase support. Installed via Homebrew on macOS, or fetched from the latest GitHub release on Linux.
 
----
+### Ruby
 
-## lazygit
-
-Terminal UI for git. On Linux, fetches the latest release directly from GitHub. On macOS, installed via Homebrew.
-
----
-
-## Ruby
-
-Installs Ruby via Homebrew (macOS) or `ruby-full` via apt (Linux). The `~/.gem/bin` path is included in both shell configs so gem binaries are available on the PATH.
+Installs Ruby via Homebrew (macOS) or `ruby-full` via apt (Linux). The `~/.gem/bin` path is included in both shell configs so gem binaries are available on `PATH`.

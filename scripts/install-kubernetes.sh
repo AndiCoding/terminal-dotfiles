@@ -24,11 +24,11 @@ else
 fi
 
 if ensure_brew; then
-  if command -v k3d &>/dev/null; then
-    echo "k3d already installed"
+  if command -v rdctl &>/dev/null; then
+    echo "Rancher Desktop already installed"
   else
-    echo "k3s is not supported on macOS, installing k3d instead (k3s in Docker)..."
-    brew install -q k3d
+    echo "k3s is not supported on macOS natively, installing Rancher Desktop instead (k3s in a VM)..."
+    brew install -q --cask rancher
   fi
 else
   if command -v k3s &>/dev/null; then

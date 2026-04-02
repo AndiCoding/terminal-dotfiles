@@ -26,6 +26,7 @@ echo "  3) Kubernetes (kubectl, rancher desktop/k3s, helm)"
 echo "  4) GitHub CLI (gh)"
 echo "  5) tmux"
 echo "  6) lazygit"
+echo "  7) Ghostty"
 echo ""
 read -rp "Tools to install: " tool_input
 echo ""
@@ -47,7 +48,7 @@ fi
 echo ""
 echo "Installing user selected tools..."
 if echo "$tool_input" | grep -qw 0; then
-  tool_input="1 2 3 4 5 6"
+  tool_input="1 2 3 4 5 6 7"
 fi
 
 for num in $tool_input; do
@@ -58,6 +59,7 @@ for num in $tool_input; do
     4) bash "$SCRIPTS_DIR/install-gh.sh" ;;
     5) bash "$SCRIPTS_DIR/install-tmux.sh" ;;
     6) bash "$SCRIPTS_DIR/install-lazygit.sh" ;;
+    7) bash "$SCRIPTS_DIR/install-ghostty.sh" ;;
   esac
 done
 

@@ -1,0 +1,19 @@
+# ── PATH ─────────────────────────────────────────────────────────────────────
+fish_add_path $HOME/.pub-cache/bin             # Dart/Flutter packages
+fish_add_path $HOME/.gem/bin                   # Ruby gems
+fish_add_path $HOME/.local/bin                 # Local binaries (e.g. bat symlink)
+
+# ── Shell tools ───────────────────────────────────────────────────────────────
+zoxide init fish | source                      # Smart cd (z, zi)
+
+# ── fzf ───────────────────────────────────────────────────────────────────────
+set -gx FZF_DEFAULT_COMMAND 'rg --files --hidden --glob "!.git"'
+set -gx FZF_DEFAULT_OPTS '--preview "bat --color=always --style=numbers {}"'
+
+# ── Kubernetes ────────────────────────────────────────────────────────────────
+set -gx KUBECONFIG ~/.kube/config:~/.kube/config-server
+alias k='kubectl'
+alias kp='kubectl get pods -o wide'
+alias kn='kubectl get nodes -o wide'
+alias klocal='kubectl config use-context default'
+alias kserver='kubectl config use-context server'

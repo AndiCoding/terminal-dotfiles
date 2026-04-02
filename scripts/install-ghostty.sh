@@ -23,14 +23,12 @@ echo ""
 TARGET="$HOME/.config/ghostty"
 
 if [[ -d "$TARGET" ]]; then
-  echo "Warning: ~/.config/ghostty already exists and will be overwritten."
-  read -rp "Back it up manually first if needed. Continue? [y/N]: " confirm
-  [[ "${confirm,,}" != "y" ]] && echo "Skipped." && exit 0
+  echo "Using existing ~/.config/ghostty"
+else
+  mkdir -p "$TARGET"
+  cp "$GHOSTTY_CONFIG_DIR/config" "$TARGET/config"
+  echo "Copied ghostty config"
 fi
-
-mkdir -p "$TARGET"
-cp "$GHOSTTY_CONFIG_DIR/config" "$TARGET/config"
-echo "Copied ghostty config"
 
 echo ""
 echo "Done! Restart Ghostty to apply the config."

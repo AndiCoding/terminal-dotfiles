@@ -46,17 +46,15 @@ echo ""
 mkdir -p "$HOME/.config/fish"
 
 if [[ -f "$HOME/.config/fish/config.fish" ]]; then
-  echo "Warning: ~/.config/fish/config.fish already exists and will be overwritten."
-  read -rp "Back it up manually first if needed. Continue? [y/N]: " confirm
-  [[ "${confirm,,}" != "y" ]] && echo "Skipped." && exit 0
-fi
-
-if ensure_brew; then
-  cp "$FISH_DIR/config.fish.mac" "$HOME/.config/fish/config.fish"
+  echo "Using existing ~/.config/fish/config.fish"
 else
-  cp "$FISH_DIR/config.fish.linux" "$HOME/.config/fish/config.fish"
+  if ensure_brew; then
+    cp "$FISH_DIR/config.fish.mac" "$HOME/.config/fish/config.fish"
+  else
+    cp "$FISH_DIR/config.fish.linux" "$HOME/.config/fish/config.fish"
+  fi
+  echo "Copied config.fish"
 fi
-echo "Copied config.fish"
 
 echo ""
 

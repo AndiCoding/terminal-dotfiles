@@ -28,13 +28,11 @@ fi
 echo ""
 
 if [[ -f "$HOME/.tmux.conf" ]]; then
-  echo "Warning: ~/.tmux.conf already exists and will be overwritten."
-  read -rp "Back it up manually first if needed. Continue? [y/N]: " confirm
-  [[ "${confirm,,}" != "y" ]] && echo "Skipped." && exit 0
+  echo "Using existing ~/.tmux.conf"
+else
+  cp "$TMUX_DIR/.tmux.conf" "$HOME/.tmux.conf"
+  echo "Copied .tmux.conf"
 fi
-
-cp "$TMUX_DIR/.tmux.conf" "$HOME/.tmux.conf"
-echo "Copied .tmux.conf"
 
 echo ""
 

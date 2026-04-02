@@ -24,13 +24,11 @@ fi
 echo ""
 
 if [[ -d "$HOME/.config/nvim" ]]; then
-  echo "Warning: ~/.config/nvim already exists and will be overwritten."
-  read -rp "Back it up manually first if needed. Continue? [y/N]: " confirm
-  [[ "${confirm,,}" != "y" ]] && echo "Skipped." && exit 0
+  echo "Using existing ~/.config/nvim"
+else
+  cp -r "$NVIM_DIR" "$HOME/.config/nvim"
+  echo "Copied nvim config"
 fi
-
-cp -r "$NVIM_DIR" "$HOME/.config/nvim"
-echo "Copied nvim config"
 
 echo ""
 echo "Done! Run nvim to complete plugin installation."

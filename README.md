@@ -41,6 +41,8 @@ All scripts support macOS (Homebrew) and Linux (apt). All scripts are safe to re
 bash install.sh
 ```
 
+> Or make it executable first: `chmod +x install.sh && ./install.sh`
+
 The installer will prompt you to:
 1. Choose a default shell — zsh or fish
 2. Select optional tools to install (0 for all)

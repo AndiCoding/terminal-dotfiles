@@ -65,17 +65,15 @@ install_omz_plugin zsh-syntax-highlighting https://github.com/zsh-users/zsh-synt
 echo ""
 
 if [[ -f "$HOME/.zshrc" ]]; then
-  echo "Warning: ~/.zshrc already exists and will be overwritten."
-  read -rp "Back it up manually first if needed. Continue? [y/N]: " confirm
-  [[ "${confirm,,}" != "y" ]] && echo "Skipped." && exit 0
-fi
-
-if ensure_brew; then
-  cp "$ZSH_DIR/.zshrc.mac" "$HOME/.zshrc"
+  echo "Using existing ~/.zshrc"
 else
-  cp "$ZSH_DIR/.zshrc.linux" "$HOME/.zshrc"
+  if ensure_brew; then
+    cp "$ZSH_DIR/.zshrc.mac" "$HOME/.zshrc"
+  else
+    cp "$ZSH_DIR/.zshrc.linux" "$HOME/.zshrc"
+  fi
+  echo "Copied .zshrc"
 fi
-echo "Copied .zshrc"
 
 echo ""
 

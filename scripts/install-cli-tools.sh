@@ -27,6 +27,17 @@ else
     brew install -q zoxide
   else
     sudo apt-get install -y zoxide  
+  fi
+fi
+
+if command -v fdfind &/dev/null; then
+  echo "fdfind already installed"
+else 
+  echo "installing fdfind"
+  if ensure_brew; then
+    brew install -q fd
+  else
+    sudo apt-get install -y fd
     echo "need to alias fdfind to fd, since fd is old linux package"
   fi
 fi
@@ -58,6 +69,7 @@ else
     sudo apt-get install -y bat
     mkdir -p ~/.local/bin
     ln -sf /usr/bin/batcat ~/.local/bin/bat
+    echo "alias needed. on mac bat is called batcat"
   fi
 fi
 

@@ -26,13 +26,15 @@ else
   if ensure_brew; then
     brew install -q zoxide
   else
-    sudo apt-get install -y zoxide  
+    sudo apt-get install -y zoxide
   fi
 fi
 
-if command -v fdfind &/dev/null; then
+if
+  command -v fd &>/dev/null
+then
   echo "fdfind already installed"
-else 
+else
   echo "installing fdfind"
   if ensure_brew; then
     brew install -q fd

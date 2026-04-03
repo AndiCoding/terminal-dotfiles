@@ -5,6 +5,8 @@ fish_add_path $HOME/.local/bin                 # Local binaries (e.g. bat symlin
 
 # ── Shell tools ───────────────────────────────────────────────────────────────
 zoxide init fish | source                      # Smart cd (z, zi)
+alias fd='fdfind'
+alias bat='batcat'
 
 # ── fzf ───────────────────────────────────────────────────────────────────────
 set -gx FZF_DEFAULT_COMMAND 'rg --files --hidden --glob "!.git"'

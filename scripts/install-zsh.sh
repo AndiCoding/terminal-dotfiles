@@ -68,9 +68,9 @@ if [[ -f "$HOME/.zshrc" ]]; then
   echo "Using existing ~/.zshrc"
 else
   if ensure_brew; then
-    cp "$ZSH_DIR/.zshrc.mac" "$HOME/.zshrc"
+    cp "$ZSH_DIR/config.zshrc.mac" "$HOME/.zshrc"
   else
-    cp "$ZSH_DIR/.zshrc.linux" "$HOME/.zshrc"
+    cp "$ZSH_DIR/config.zshrc.linux" "$HOME/.zshrc"
   fi
   echo "Copied .zshrc"
 fi

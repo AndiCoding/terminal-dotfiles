@@ -26,7 +26,8 @@ else
   if ensure_brew; then
     brew install -q zoxide
   else
-    curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
+    sudo apt-get install -y zoxide  
+    echo "need to alias fdfind to fd, since fd is old linux package"
   fi
 fi
 

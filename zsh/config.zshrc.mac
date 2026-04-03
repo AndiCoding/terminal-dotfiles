@@ -24,12 +24,12 @@ eval "$(zoxide init zsh)"  # Smart cd with frecency-based directory jumping (z, 
 source <(fzf --zsh)        # Fuzzy finder keybindings (Ctrl+R, Ctrl+T, Alt+C)
 export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git"'
 export FZF_DEFAULT_OPTS='--preview "bat --color=always --style=numbers {}"'
-if type -q eza
+
+if (( $+commands[eza] )); then
     alias ls='eza --icons --git'
     alias ll='eza -lh --icons --git'
     alias lt='eza --tree --level=2'
-end
-
+fi
 # ── Kubernetes ──
 export KUBECONFIG=~/.kube/config:~/.kube/config-server  # Merge local + server kubeconfigs
 alias klocal='kubectl config use-context default'
